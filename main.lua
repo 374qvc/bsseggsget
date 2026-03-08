@@ -84,24 +84,28 @@ while runned do
 	if workspace.Collectibles:WaitForChild("Diamond").Transparency == 0.699999988079071 then
 		runned = false
 	end
-	tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-	wait(3)
-	tweenToPosition(CFrame.new(41.7359543, 151.055878, -531.89093, 0.925303102, -0, -0.379228383, 0, 1, -0, 0.379228383, 0, 0.925303102), 3)
-	wait(3)
-	tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-	wait(3)
+	if workspace.Collectibles:WaitForChild("Diamond").Transparency == 0 then
+		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+		wait(3)
+		tweenToPosition(CFrame.new(41.7359543, 151.055878, -531.89093, 0.925303102, -0, -0.379228383, 0, 1, -0, 0.379228383, 0, 0.925303102), 3)
+		wait(3)
+		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+		wait(3)
+	end
 end
 
 while runnedGold do
 	if workspace.Collectibles:WaitForChild("Gold").Transparency == 0.699999988079071 then
 		runnedGold = false
 	end
-	tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-	wait(3)
-	tweenToPosition(CFrame.new(83.8066254, 69.4766388, -142.149338), 3)
-	wait(3)
-	tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-	wait(3)
+	if workspace.Collectibles:WaitForChild("Gold").Transparency == 0 then
+		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+		wait(3)
+		tweenToPosition(CFrame.new(83.8066254, 69.4766388, -142.149338), 3)
+		wait(3)
+		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+		wait(3)
+	end
 end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/374qvc/bsseggsget/refs/heads/main/placeeggs.lua"))()
