@@ -81,10 +81,11 @@ end
 runned = true
 runnedGold = true
 while runned do
-	if workspace.Collectibles:WaitForChild("Diamond").Transparency == 0.699999988079071 then
+	dia = workspace.Collectibles:WaitForChild("Diamond")
+	if dia.Transparency == 0.699999988079071 then
 		runned = false
 	end
-	if workspace.Collectibles:WaitForChild("Diamond").Transparency == 0 then
+	if dia.Transparency == 0 then
 		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
 		wait(3)
 		tweenToPosition(CFrame.new(41.7359543, 151.055878, -531.89093, 0.925303102, -0, -0.379228383, 0, 1, -0, 0.379228383, 0, 0.925303102), 3)
@@ -92,19 +93,26 @@ while runned do
 		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
 		wait(3)
 	end
+	if not dia then
+	    runned = false
+	end
 end
 
 while runnedGold do
-	if workspace.Collectibles:WaitForChild("Gold").Transparency == 0.699999988079071 then
+	gold = workspace.Collectibles:WaitForChild("Gold")
+	if gold.Transparency == 0.699999988079071 then
 		runnedGold = false
 	end
-	if workspace.Collectibles:WaitForChild("Gold").Transparency == 0 then
+	if gold.Transparency == 0 then
 		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
 		wait(3)
 		tweenToPosition(CFrame.new(83.8066254, 69.4766388, -142.149338), 3)
 		wait(3)
 		tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
 		wait(3)
+	end
+	if not gold then
+	    runnedGold = false
 	end
 end
 
