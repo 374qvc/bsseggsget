@@ -1,0 +1,7 @@
+game:GetService("ReplicatedStorage").Events.ConstructHiveCellFromEgg:InvokeServer(1,1,"Basic",1,false)
+wait(1)
+game:GetService("ReplicatedStorage").Events.ConstructHiveCellFromEgg:InvokeServer(2,1,"Diamond",1,false)
+wait(1)
+game:GetService("ReplicatedStorage").Events.ConstructHiveCellFromEgg:InvokeServer(3,1,"Gold",1,false)
+wait(1)
+game:GetService("ReplicatedStorage").Events.ConstructHiveCellFromEgg:InvokeServer(1,1,"StarJelly",1,false)
