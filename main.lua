@@ -7,9 +7,8 @@ end
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart", 5)
 
 local function tweenToPosition(targetCFrame, duration)
-
     if not humanoidRootPart then
-        warn("HumanoidRootPart не найден!")
+        warn("!HumanoidRootPart")
         return
     end
 
@@ -25,6 +24,7 @@ local function tweenToPosition(targetCFrame, duration)
         CFrame = targetCFrame
     })
     tween:Play()
+    tween.Completed:Wait() -- Ждем завершения твина
 end
 
 local function colorsAreSimilar(color1, color2, tolerance)
@@ -49,11 +49,9 @@ if not folder then
 end
 
 for index, item in ipairs(folder:GetChildren()) do
-
     if item:IsA("Part") or item:IsA("MeshPart") then
         
         local colorMatches = colorsAreSimilar(item.Color, targetColor)
-        
         local decal = item:FindFirstChild(decalName)
         local textureMatches = decal and decal:IsA("Decal") and decal.Texture == targetTexture
         
@@ -64,11 +62,9 @@ for index, item in ipairs(folder:GetChildren()) do
 end
 
 for index, item in ipairs(folder:GetChildren()) do
-
     if item:IsA("Part") or item:IsA("MeshPart") then
         
         local colorMatches = colorsAreSimilar(item.Color, targetColorGold)
-        
         local decal = item:FindFirstChild(decalName)
         local textureMatches = decal and decal:IsA("Decal") and decal.Texture == targetTextureGold
         
@@ -78,47 +74,43 @@ for index, item in ipairs(folder:GetChildren()) do
     end
 end
 
-runned = true
-runnedGold = true
+-- Исправленные циклы
+local runned = true
 while runned do
-	dia = workspace.Collectibles:WaitForChild("Diamond")
-	if dia then
-		if dia.Transparency == 0.699999988079071 then
-			runned = false
-		end
-		if dia.Transparency == 0 then
-			tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-			wait(3)
-			tweenToPosition(CFrame.new(41.7359543, 151.055878, -531.89093, 0.925303102, -0, -0.379228383, 0, 1, -0, 0.379228383, 0, 0.925303102), 3)
-			wait(3)
-			tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-			wait(3)
-		end
-	end
-	else
-	    runned = false
-	end
+    local dia = workspace.Collectibles:FindFirstChild("Diamond")
+    if dia then
+        if dia.Transparency == 0.699999988079071 then
+            runned = false
+            break
+        end
+        if dia.Transparency == 0 then
+            tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+            tweenToPosition(CFrame.new(41.7359543, 151.055878, -531.89093, 0.925303102, -0, -0.379228383, 0, 1, -0, 0.379228383, 0, 0.925303102), 3)
+            tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+        end
+    else
+        runned = false
+    end
+    wait(1) -- Небольшая задержка между итерациями
 end
 
+local runnedGold = true
 while runnedGold do
-	gold = workspace.Collectibles:WaitForChild("Gold")
-	if gold then
-		if gold.Transparency == 0.699999988079071 then
-			runnedGold = false
-		end
-		if gold.Transparency == 0 then
-			tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-			wait(3)
-			tweenToPosition(CFrame.new(83.8066254, 69.4766388, -142.149338), 3)
-			wait(3)
-			tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
-			wait(3)
-		end
-	end
-	else
-		warn("gold inf")
-	    runnedGold = false
-	end
+    local gold = workspace.Collectibles:FindFirstChild("Gold")
+    if gold then
+        if gold.Transparency == 0.699999988079071 then
+            runnedGold = false
+            break
+        end
+        if gold.Transparency == 0 then
+            tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+            tweenToPosition(CFrame.new(83.8066254, 69.4766388, -142.149338), 3)
+            tweenToPosition(CFrame.new(-57.1720009, 150.0280781, 106.606125), 3)
+        end
+    else
+        runnedGold = false
+    end
+    wait(1) -- Небольшая задержка между итерациями
 end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/374qvc/bsseggsget/refs/heads/main/placeeggs.lua"))()
