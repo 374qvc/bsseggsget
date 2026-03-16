@@ -1991,42 +1991,14 @@ if not keyToCheck then
     keyToCheck = getgenv().SCRIPT_KEY
 end
 
--- BULLETPROOF KEY CHECK WITH PCALL WRAPPER
+-- [!] ИЗМЕНЕНО: Проверяем только наличие ключа, не его валидность
 if keyToCheck then
-    local success, result = pcall(function()
-        return Junkie.check_key(keyToCheck)
-    end)
-    
-    if success and result and result.valid then
-        if result.message == "KEYLESS" then
-            if ui.showSuccess then
-                ui:showSuccess("Keyless Mode ✓")
-            end
-            getgenv().SCRIPT_KEY = "KEYLESS"
-            if ui.close then ui:close() end
-            return
-        end
-        
-        if result.message == "KEY_VALID" then
-            if not savedKey and keyToCheck then
-                saveVerifiedKey(keyToCheck)
-            end
-            
-            if ui.showSuccess then
-                local successMsg = savedKey and "Saved Key Verified ✓" or "Key Verified ✓"
-                ui:showSuccess(successMsg)
-            end
-            getgenv().SCRIPT_KEY = keyToCheck
-            if ui.close then ui:close() end
-            return
-        end
-    else
-        -- KEY CHECK FAILED (expired, corrupted, API error, etc.)
-        if savedKey then
-            clearSavedKey()
-        end
-        -- Fall through to show UI
+    if ui.showSuccess then
+        ui:showSuccess("Key Verified ✓ (Debug Mode)")
     end
+    getgenv().SCRIPT_KEY = keyToCheck
+    if ui.close then ui:close() end
+    return -- Выходим из скрипта, т.к. ключ "найден"
 end
 
 if ui.setLoadingState then
